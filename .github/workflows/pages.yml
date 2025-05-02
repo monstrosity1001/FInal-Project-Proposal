@@ -13,12 +13,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Upload static site
+      - name: Upload static site to Pages
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'  # index.html is in the root
+          path: '.'  # assuming index.html is in repo root
 
   deploy:
     needs: build
