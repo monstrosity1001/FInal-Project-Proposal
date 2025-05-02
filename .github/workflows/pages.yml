@@ -16,10 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload static site to Pages
+      # Ensure the latest artifact actions are used
+      - name: Setup artifact v4
+        uses: actions/upload-artifact@v4
+        with:
+          name: placeholder
+          path: index.html  # any small file to prevent error (gets overridden anyway)
+
+      # Upload Pages artifact properly
+      - name: Upload static site to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'  # assuming index.html is in repo root
+          path: '.'  # adjust if index.html is in a subfolder
 
   deploy:
     needs: build
